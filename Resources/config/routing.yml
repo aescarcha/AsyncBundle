@@ -1,0 +1,3 @@
+action_performed:
+    path:     action-performed/{entity}/{id}
+    defaults: { _controller: "AescarchaAsyncBundle:Async:actionPerformed"}

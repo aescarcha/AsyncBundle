@@ -4,9 +4,12 @@
 This bundle handles events on Symfony entities, like persist, delete... It pushes a job to RMQ so heavy stuff can be handled in an asynchronous way.
 
 ## Install
-Clone the repo, composer install is a TODO.
 
-Configure RMQ in your config.yml, IE:
+    composer require aescarcha/async
+
+#### Config
+
+##### Configure RMQ in your config.yml, IE:
 
     old_sound_rabbit_mq:
         connections:
@@ -37,7 +40,7 @@ Configure RMQ in your config.yml, IE:
                 queue_options:    {name: 'async-refresher'}
                 callback:         aescarcha.persist_listener
 
-Add the service to your services.yml
+#### services.yml
 
     #Listener to trigger async regeneration, this service is also a rabbit consumer
     aescarcha.persist_listener:
@@ -49,9 +52,16 @@ Add the service to your services.yml
             - { name: doctrine.event_listener, event: postRemove }
             - { name: doctrine.event_listener, event: postSoftDelete }
 
+##### AppKernel.php
+
+    $bundles = array(
+        new Aescarcha\SerializerBundle\AescarchaSerializerBundle(),
+    );
+
+
 
 ## Tests
 Tests are provided on the repo, but they're not working because the test requires some Entities and Repositories to work, making them work in a clean symfony install is also a TODO
 
-##SERIUS TODO:
+## SERIUS TODO:
 Dynamic classes called on listeners, move those classes outside the repo

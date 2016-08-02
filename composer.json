@@ -1,5 +1,5 @@
 {
-    "name" : "Aescarcha/async",
+    "name" : "aescarcha/async",
     "description" : "A bundle to handle serialization and deseralization of Entities on Symfony, it's a layer over Symfony's Serializer Component",
     "type" : "symfony-bundle",
     "authors" : [{
